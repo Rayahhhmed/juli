@@ -1,4 +1,5 @@
 import { Express, Request, Response } from "express";
+import buildingCodes from "../controller/buildingCodes.controller";
 import queryHandler from "../controller/queryHandler.controller";
 import { QueryRequest } from "../interface/query";
 import validateQuery from '../middleware/validateQueryRequest';
@@ -11,6 +12,11 @@ function routes(app: Express) {
 
     app.get('/:from/:to', (req: Request, res: Response) => {
         queryHandler(req, res);
+    });
+
+    app.get('/list', (req: Request, res: Response) => {
+        buildingCodes();
+        res.sendStatus(200);
     });
 }
 
