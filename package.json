@@ -12,6 +12,7 @@
     "format": "npm run prettier-format"
   },
   "dependencies": {
+    "axios": "^0.26.0",
     "config": "^3.3.7",
     "cors": "^2.8.5",
     "dayjs": "^1.10.7",

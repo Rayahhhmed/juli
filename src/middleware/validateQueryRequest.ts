@@ -7,7 +7,7 @@ function validateQuery (query: QueryRequest) {
         logger.error("There is an error with your query request.\n Verbose: No Query found!");
         return false;
     } 
-
+    
     return true;
 }
 

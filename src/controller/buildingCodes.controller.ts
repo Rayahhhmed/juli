@@ -12,7 +12,9 @@ const runTesseract = async () => {
             const runTesseractOCR = async () => {
                 try {
                     const response = async () =>  await Tesseract.recognize(data, 'eng');
-                    const { data: { text }}  = await response()
+                    let text = '';
+                    //  const { data: { text }}  = await response()
+                    Promise.all([response, { data: { text }}])
                     console.log('text: ', text);
                     return;
                 } catch  (error) {
@@ -40,4 +42,3 @@ function buildingCodes () : void {
     }
 }
 export default buildingCodes;
-
