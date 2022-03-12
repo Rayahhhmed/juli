@@ -7,10 +7,10 @@ import { Building } from "../interface/building.interface";
 import { QueryRequest } from "../interface/query.interface";
 import validateQuery from '../middleware/validateQueryRequest';
 import { deserializeBuildingJson } from '../controller/handleBuildingData.controller';
-import getDistanceMatrix from "../service/osrm.service";
+//import getDistanceMatrix from "../service/osrm.service";
 import logger from './logger';
 import generateBuildingArray from '../controller/generateBuildingData.controller';
-import { TransportMode } from "../interface/distanceMatrix.interface";
+import { TransportMode } from '../interface/distanceMatrix.interface';
 
 function routes(app: Express) {
     app.get('/hc', (req: Request, res: Response) => {
@@ -35,8 +35,8 @@ function routes(app: Express) {
                 break;
         }
 
-        let distanceMatrixJson = getDistanceMatrix(buildingFrom, buildingTo, transportType);
-        console.log(distanceMatrixJson);
+        //let distanceMatrixJson = getDistanceMatrix(buildingFrom, buildingTo, transportType);
+        //console.log(distanceMatrixJson);
     });
 
     
