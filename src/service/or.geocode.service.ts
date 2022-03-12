@@ -35,7 +35,7 @@ const getGeodata = (deserializedData: any, objectkey: string, addressString: str
 
         res.on('end', () => {
             geoData = JSON.parse(geoData);
-            changeBuildingsObject(geoData,deserializedData, objectkey, addressString);
+            changeBuildingsObject(geoData, deserializedData, objectkey, addressString);
         })
     })
 

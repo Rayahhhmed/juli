@@ -38,22 +38,12 @@ const handleBuildingData = () => {
                 ', UNSW, Kensington, 2033, NSW, Australia';
                 // This deserializedData is the json read from the buildings file 
                 // and serialized to an object. 
-                const geojson = getGeodata(deserializedData, key, addressString);
+                const geojson = async () => await getGeodata(deserializedData, key, addressString);
                 if (geojson === undefined) {
                     nonLocatableBuildingIds.push(key);
-                } else {
-                    console.log(geojson);
-                    
-                    let [long, lat, _, __] = geojson['bbox'];
-                    deserializedData[key] = {
-                        name: deserializedData[key]['name'],
-                        address: addressString,
-                        latitude: lat, 
-                        longitude: long,
-                    } 
-                    serializeBuildingJson(deserializedData);
                 }
-                
+
+                return geojson;
                 
             }
         });
@@ -64,7 +54,6 @@ const handleBuildingData = () => {
 
 
 export const changeBuildingsObject = (geojson: any, deserializedData: any, objectKey: string, addressString: string) => { 
-        console.log(geojson);
         let [long, lat, _, __] = geojson['bbox'];
         deserializedData[objectKey] = {
             name: deserializedData[objectKey]['name'],
