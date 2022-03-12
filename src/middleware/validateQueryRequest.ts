@@ -1,5 +1,5 @@
 import logger from '../utils/logger';
-import { QueryRequest, QueryResponse } from "../interface/query";
+import { QueryRequest, QueryResponse } from "../interface/query.interface";
 
 
 function validateQuery (query: QueryRequest) {
@@ -7,7 +7,6 @@ function validateQuery (query: QueryRequest) {
         logger.error("There is an error with your query request.\n Verbose: No Query found!");
         return false;
     } 
-    
     return true;
 }
 

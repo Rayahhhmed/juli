@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { QueryRequest } from "../interface/query";
+import { QueryRequest } from "../interface/query.interface";
 import validateQuery from "../middleware/validateQueryRequest";
 
 function queryHandler (req: Request, res: Response) : void { 
