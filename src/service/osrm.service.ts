@@ -6,6 +6,18 @@ import { Building } from '../interface/building.interface';
 import { TransportMode } from '../interface/distanceMatrix.interface';
 import axios from 'axios';
 
+
+/**
+ * 
+ * @param geojson 
+ * @param deserializedData 
+ * @param objectKey 
+ * @param addressString 
+ * @param buildingFrom 
+ * @param buildingTo 
+ * @param transportType 
+ * @returns 
+ */
 const getDistanceMatrix = (geojson: any, deserializedData: any, objectKey: string, addressString: string, 
                            buildingFrom?: Building, buildingTo?: Building, transportType?: TransportMode): any => {
     let matrixJson = ''
@@ -15,7 +27,7 @@ const getDistanceMatrix = (geojson: any, deserializedData: any, objectKey: strin
                           buildingTo?.longitude + ',' + buildingTo?.latitude;
     
     let dummy = '151.2153,-33.8568;151.1780,-33.7961'
-    let URL = 'http://localhost:'+ port_osrm + '/route/v1/foot/' + isochroneString;
+    let URL = 'http://localhost:'+ port_osrm + '/route/v1/foot/' + dummy;
 
     axios.get(URL).then(res => {
         matrixJson = res.data;

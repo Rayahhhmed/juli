@@ -31,22 +31,27 @@ const handleBuildingData = () => {
         let data = JSON.stringify({"status": "mounted"})
         fs.writeFile(FIRST_MOUNT, data, 'utf8', (err) => {
             if (err) throw err;
-            console.log('Mounted Building Data Object to local memory, calling API.');
-
+            console.log('Mounted Building Data Object to local memory, calling OR Geocode API.');
+            const promises = []
             for (let key of Object.keys(deserializedData)) {
-                const addressString = deserializedData[key]['name'] + ' ' + key +  
-                ', UNSW, Kensington, 2033, NSW, Australia';
+                const addressString = deserializedData[key]['address'];
                 // This deserializedData is the json read from the buildings file 
                 // and serialized to an object. 
                 const geojson = async () => await getGeodata(deserializedData, key, addressString);
+                promises.push(geojson)
+                console.log(geojson())
                 if (geojson === undefined) {
                     nonLocatableBuildingIds.push(key);
                 }
-
-                return geojson;
                 
             }
-        });
+            Promise.allSettled(promises).then()
+        }
+        
+        
+        );
+
+        
         console.error('Could not locate these building information from geocodes!' + nonLocatableBuildingIds)
 
     } 

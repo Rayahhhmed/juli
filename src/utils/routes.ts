@@ -11,7 +11,14 @@ import { deserializeBuildingJson } from '../controller/handleBuildingData.contro
 import logger from './logger';
 import generateBuildingArray from '../controller/generateBuildingData.controller';
 import { TransportMode } from '../interface/distanceMatrix.interface';
-
+import getDistanceMatrix from "../service/osrm.service";
+/**
+ * There are three main GET HTTP requests. 
+ *  1) hc => General purpose health check
+ *  2) /mode/from/to => This endpoint will take a default mode which should be 
+ * foot since geofabrik data for Australia does not have cycle component yet. Furthermore, 
+ * @param app (Express)
+ */
 function routes(app: Express) {
     app.get('/hc', (req: Request, res: Response) => {
         res.sendStatus(200);
@@ -35,20 +42,13 @@ function routes(app: Express) {
                 break;
         }
 
-        //let distanceMatrixJson = getDistanceMatrix(buildingFrom, buildingTo, transportType);
-        //console.log(distanceMatrixJson);
+        
+        //     (geojson: any, deserializedData: any, objectKey: string, addressString: string, 
+        //                    buildingFrom?: Building, buildingTo?: Building, transportType?: TransportMode)
+        let distanceMatrixJson = getDistanceMatrix(buildingFrom, buildingTo, transportType);
+        // console.log(distanceMatrixJson);
     });
 
-    
-
-
-
-
-
-    app.get('/list', (req: Request, res: Response) => {
-        buildingCodes();
-        res.sendStatus(200);
-    });
 }
 
 export default routes;

@@ -9,8 +9,8 @@ import log from "../utils/logger";
 import logger from "../utils/logger";
 
 
-const runTesseract = async (id) => {
-    fs.readFile(config.get<string>('PATH_IMG')+id+'.PNG', (err, data) => {
+const runTesseract = async (id: string | number) => {
+    fs.readFile(config.get<string>('PATH_IMG') + id +'.PNG', (err, data) => {
         if (err) {
             log.error('Tesseract had an error finding Building Code Image path: ' + err + ' for path ' + config.get<string>('PATH_IMG'));
         } else {
